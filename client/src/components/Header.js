@@ -1,13 +1,32 @@
 // src/components/Header.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaBell, FaUserCircle } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
+import { AuthContext } from '../context/AuthContext';
 import './Header.css';
 
+
+
 function Header() {
-  const handleClick = (label) => {
-    alert(`${label} clicked`);
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleUserClick = () => {
+    if (!user) {
+      navigate('/login');
+    } else {
+      setShowDropdown(!showDropdown);
+    }
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    setShowDropdown(false);
+    navigate('/');
   };
 
   return (
@@ -46,9 +65,17 @@ function Header() {
           </nav>
 
           <div className="strip-icons">
-            <FaSearch className="icon" onClick={() => handleClick('Search')} />
-            <FaBell className="icon" onClick={() => handleClick('Notifications')} />
-            <FaUserCircle className="icon" onClick={() => handleClick('Profile')} />
+            <FaSearch className="icon" title="Search" />
+            <FaBell className="icon" title="Notifications" />
+            <div style={{ position: 'relative' }}>
+              <FaUserCircle className="icon" onClick={handleUserClick} title="Profile/Login" />
+              {showDropdown && user && (
+                <div className="user-dropdown">
+                  <p className="user-email">{user.email}</p>
+                  <button className="logout-btn" onClick={handleLogout}>Logout</button>
+                </div>
+              )}
+            </div>
           </div>
         </motion.div>
       </motion.div>
