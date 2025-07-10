@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Hammer",
+    "price": 199,
+    "description": "High quality steel hammer for carpentry.",
+    "category": "Tools",
+    "image": "https://via.placeholder.com/200x200?text=Hammer",
+    "reviews": [
+      {
+        "name": "Alice",
+        "rating": 4,
+        "comment": "Very sturdy and reliable."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Screwdriver Set",
+    "price": 349,
+    "description": "Multi-size screwdriver kit for home use.",
+    "category": "Tools",
+    "image": "https://via.placeholder.com/200x200?text=Screwdriver",
+    "reviews": []
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Cordless Drill",
+    "price": 1999,
+    "image": "/assets/drill.png",
+    "category": "Power Tools"
+  },
+  {
+    "id": 2,
+    "name": "Hammer",
+    "price": 399,
+    "image": "/assets/hammer.png",
+    "category": "Hand Tools"
+  }
+]

@@ -1,0 +1,63 @@
+.custom-strip {
+  background-color: #2563eb; /* Professional Blue */
+  color: white;
+  padding: 12px 20px;
+  font-family: 'Segoe UI', 'Inter', 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.strip-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.strip-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.strip-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.strip-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.strip-link {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.strip-link:hover {
+  color: #dbeafe; /* Soft hover blue */
+}
+
+.strip-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.icon {
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  color: #e0f2fe;
+}

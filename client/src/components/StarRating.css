@@ -1,0 +1,13 @@
+.star-rating {
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.star {
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: #FFD700; /* Gold */
+}
