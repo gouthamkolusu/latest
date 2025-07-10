@@ -8,14 +8,11 @@
 
 .product-main {
   display: flex;
-  gap: 2rem;
-  max-width: 1200px;
   width: 100%;
+  max-width: 1200px;
+  gap: 2rem;
   align-items: flex-start;
-}
-
-.product-gallery-container {
-  flex: 1;
+  justify-content: center;
 }
 
 .product-info {
@@ -24,46 +21,46 @@
 }
 
 .product-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
 }
 
-.product-rating {
+.star-rating-wrapper {
   font-size: 14px;
-  color: #c45500;
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.rating-value {
+.star-rating-wrapper .rating-number {
   font-weight: bold;
+}
+
+.star-rating-wrapper .full {
+  color: #ffa41c;
   font-size: 16px;
 }
 
-.rating-count {
-  font-weight: normal;
-  color: #555;
-  margin-left: 4px;
-}
-
-.no-rating {
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 1rem;
+.star-rating-wrapper .rating-count {
+  color: #007185;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .price {
   font-size: 22px;
   font-weight: bold;
   color: #B12704;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0 1rem;
 }
 
 .product-specs {
-  width: 100%;
-  border-collapse: collapse;
   font-size: 14px;
-  margin-bottom: 1rem;
+  width: 100%;
+  color: #333;
+  border-collapse: collapse;
 }
 
 .product-specs td {
@@ -71,9 +68,8 @@
 }
 
 .product-description {
-  margin-top: 1rem;
   font-size: 14px;
-  color: #333;
+  margin-top: 1rem;
 }
 
 .add-btn {
@@ -91,30 +87,19 @@
   background-color: #005f6a;
 }
 
-.product-extra {
-  width: 100%;
-  max-width: 1200px;
+.review-section {
   margin-top: 3rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.user-rating {
+  font-size: 18px;
+  color: #FFA41C;
+}
+
+.related-products {
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
-}
-
-.product-extra section {
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .product-main {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .product-info {
-    max-width: 100%;
-  }
-
-  .product-extra {
-    flex-direction: column;
-  }
+  gap: 1rem;
+  flex-wrap: wrap;
 }

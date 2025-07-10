@@ -28,7 +28,6 @@ function ProductDetailPage() {
     };
 
     fetchProducts();
-
     const stored = JSON.parse(localStorage.getItem(`reviews-${id}`)) || [];
     setReviews(stored);
   }, [id]);
@@ -61,16 +60,15 @@ function ProductDetailPage() {
         <div className="product-info">
           <h1 className="product-title">{product.name}</h1>
 
-          <div className="rating-stars">
+          <div className="star-rating-wrapper">
             {avgRating ? (
               <>
-                {avgRating} ★{' '}
-                <span style={{ fontWeight: 'normal' }}>
-                  ({reviews.length} {reviews.length === 1 ? 'rating' : 'ratings'})
-                </span>
+                <span className="rating-number">{avgRating}</span>
+                <span className="star full">★★★★★</span>
+                <span className="rating-count">({reviews.length} ratings)</span>
               </>
             ) : (
-              <>No ratings yet</>
+              <span className="no-rating">No ratings yet</span>
             )}
           </div>
 
@@ -115,7 +113,7 @@ function ProductDetailPage() {
             </tbody>
           </table>
 
-          <p style={{ marginTop: '1rem' }}>
+          <p className="product-description">
             <strong>Description:</strong> {product.description || `This is a high-quality ${product.category} item perfect for your home needs.`}
           </p>
 
@@ -123,36 +121,34 @@ function ProductDetailPage() {
         </div>
       </div>
 
-      <hr />
+      <div className="review-section">
+        <h3>Leave a Review</h3>
+        <form onSubmit={handleReviewSubmit}>
+          <textarea
+            value={newReview}
+            onChange={(e) => setNewReview(e.target.value)}
+            placeholder="Write your review..."
+            required
+          />
+          <br />
+          <label>Rating:</label>
+          <StarRating rating={newRating} setRating={setNewRating} />
+          <br />
+          <button type="submit">Submit Review</button>
+        </form>
 
-      <h3>Leave a Review</h3>
-      <form onSubmit={handleReviewSubmit}>
-        <textarea
-          value={newReview}
-          onChange={(e) => setNewReview(e.target.value)}
-          placeholder="Write your review..."
-          required
-        />
-        <br />
-        <label>Rating:</label>
-        <StarRating rating={newRating} setRating={setNewRating} />
-        <br />
-        <button type="submit">Submit Review</button>
-      </form>
-
-      <h3>Customer Reviews</h3>
-      {reviews.length === 0 && <p>No reviews yet.</p>}
-      <ul>
-        {reviews.map((rev, idx) => (
-          <li key={idx} style={{ marginBottom: '1rem' }}>
-            <div style={{ fontSize: '18px', color: '#FFD700' }}>
-              {'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}
-            </div>
-            <p>{rev.text}</p>
-            <small>{rev.date}</small>
-          </li>
-        ))}
-      </ul>
+        <h3>Customer Reviews</h3>
+        {reviews.length === 0 && <p>No reviews yet.</p>}
+        <ul>
+          {reviews.map((rev, idx) => (
+            <li key={idx}>
+              <div className="user-rating">{'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}</div>
+              <p>{rev.text}</p>
+              <small>{rev.date}</small>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <hr />
       <h3>Related Products</h3>

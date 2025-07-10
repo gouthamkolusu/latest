@@ -7,19 +7,16 @@ function ProductGallery({ images = [] }) {
   const [mainImage, setMainImage] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (images.length > 0) {
       setMainImage(images[0]);
-      setIsLoaded(false);
     }
   }, [images]);
 
   const handleThumbnailClick = (img, idx) => {
     setMainImage(img);
     setPhotoIndex(idx);
-    setIsLoaded(false);
   };
 
   if (!images.length) return <p>No images available</p>;
@@ -34,6 +31,7 @@ function ProductGallery({ images = [] }) {
             alt={`thumb-${idx}`}
             onClick={() => handleThumbnailClick(img, idx)}
             className={mainImage === img ? 'active' : ''}
+            loading="lazy"
           />
         ))}
       </div>
@@ -42,11 +40,10 @@ function ProductGallery({ images = [] }) {
         <img
           src={mainImage}
           alt="Main product"
-          onClick={() => isLoaded && setIsOpen(true)}
-          onLoad={() => setIsLoaded(true)}
+          onClick={() => setIsOpen(true)}
           className="main-image"
+          loading="lazy"
         />
-        {!isLoaded && <div className="loader-box">Loading image...</div>}
       </div>
 
       {isOpen && (
