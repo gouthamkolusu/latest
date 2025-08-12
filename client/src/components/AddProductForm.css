@@ -1,40 +1,290 @@
-.add-product-form {
-  background-color: #ffffff;
+.add-product-container {
+  max-width: 850px;
+  margin: 50px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 24px;
-  max-width: 500px;
-  margin: 20px auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: 'Inter', sans-serif;
 }
 
-.add-product-form h3 {
-  text-align: center;
-  color: #1f2937;
-  margin-bottom: 20px;
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
 }
 
-.add-product-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
+/* ---------- HEADER ---------- */
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  position: relative;
 }
 
-.add-product-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+.back-icon {
+  position: absolute;
+  left: 0;
+  font-size: 22px;
   cursor: pointer;
-  font-weight: 500;
+  color: #374151;
+  transition: color 0.2s ease;
 }
 
-.add-product-form button:hover {
-  background-color: #1d4ed8;
+.back-icon:hover {
+  color: #2563eb;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-icon {
+  font-size: 26px;
+  color: #2563eb;
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ---------- CATEGORY STEP ---------- */
+.category-step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #2563eb;
+}
+
+.breadcrumb-item.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  color: #6b7280;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.category-list li {
+  background: #f9fafb;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.category-list li:hover {
+  background: #eff6ff;
+  border-color: #60a5fa;
+}
+
+.arrow {
+  color: #9ca3af;
+}
+
+/* ---------- BUTTONS ---------- */
+.reset-btn {
+  background: #f3f4f6;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.reset-btn:hover {
+  background: #e5e7eb;
+}
+
+/* ---------- FORM FIELDS ---------- */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ✅ Two Inputs Per Row with Clear Space */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px; /* Increased space between inputs */
+  align-items: flex-start;
+}
+
+/* Each input wrapper */
+.input-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Input with unit label */
+.input-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between input box and unit text */
+  width: 100%;
+}
+
+.input-with-unit input {
+  flex: 1;
+  min-width: 0;
+}
+
+.unit-label {
+  white-space: nowrap;
+  font-size: 14px;
+  color: #6b7280;
+  padding: 0 6px;
+}
+
+.field-label {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+  display: block;
+}
+
+/* Inputs & Textarea */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 140px;
+}
+
+/* ---------- SPECIFICATIONS ---------- */
+.form-section.specifications {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+
+/* ---------- IMAGE UPLOADER ---------- */
+.image-uploader {
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  background: #f9fafb;
+  transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.image-uploader:hover {
+  border-color: #2563eb;
+  background: #f0f9ff;
+}
+
+.image-uploader input[type="file"] {
+  display: none;
+}
+
+.image-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.image-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+/* ---------- SUBMIT BUTTON ---------- */
+.submit-btn {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+  margin-top: 16px;
+}
+
+.submit-btn:hover {
+  background: #1e40af;
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr; /* Stack inputs on small screens */
+    gap: 16px;
+  }
 }

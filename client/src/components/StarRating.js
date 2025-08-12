@@ -1,18 +1,19 @@
-import React from 'react';
+// src/components/StarRating.js
+import React, { useState } from 'react';
 import './StarRating.css';
 
 function StarRating({ rating, setRating }) {
-  const handleClick = (star) => setRating(star);
+  const [hover, setHover] = useState(null);
 
   return (
     <div className="star-rating">
       {[1, 2, 3, 4, 5].map((star) => (
         <span
           key={star}
-          className={`star ${star <= rating ? 'filled' : ''}`}
-          onClick={() => handleClick(star)}
-          onMouseEnter={() => setRating(star)}
-          onMouseLeave={() => setRating(rating)}
+          className={`star ${star <= (hover || rating) ? 'filled' : ''}`}
+          onClick={() => setRating(star)}
+          onMouseEnter={() => setHover(star)}
+          onMouseLeave={() => setHover(null)}
         >
           ★
         </span>

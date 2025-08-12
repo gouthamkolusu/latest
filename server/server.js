@@ -51,6 +51,59 @@ app.post('/api/products', (req, res) => {
   });
 });
 
+// PUT update product by ID
+app.put('/api/products/:id', (req, res) => {
+  const productId = parseInt(req.params.id);
+  const updatedProduct = req.body;
+
+  fs.readFile(productsFile, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ error: 'Failed to read products file' });
+
+    let products = [];
+    try {
+      products = JSON.parse(data || '[]');
+    } catch {
+      return res.status(500).json({ error: 'Failed to parse products' });
+    }
+
+    const index = products.findIndex(p => p.id === productId);
+    if (index === -1) return res.status(404).json({ error: 'Product not found' });
+
+    products[index] = { ...products[index], ...updatedProduct };
+
+    fs.writeFile(productsFile, JSON.stringify(products, null, 2), err => {
+      if (err) return res.status(500).json({ error: 'Failed to update product' });
+      res.json({ message: 'Product updated', product: products[index] });
+    });
+  });
+});
+
+// DELETE product by ID
+app.delete('/api/products/:id', (req, res) => {
+  const productId = parseInt(req.params.id);
+
+  fs.readFile(productsFile, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ error: 'Failed to read products file' });
+
+    let products = [];
+    try {
+      products = JSON.parse(data || '[]');
+    } catch {
+      return res.status(500).json({ error: 'Failed to parse products' });
+    }
+
+    const filtered = products.filter(p => p.id !== productId);
+    if (filtered.length === products.length) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    fs.writeFile(productsFile, JSON.stringify(filtered, null, 2), err => {
+      if (err) return res.status(500).json({ error: 'Failed to delete product' });
+      res.json({ message: 'Product deleted' });
+    });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });

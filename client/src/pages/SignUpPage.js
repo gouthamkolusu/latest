@@ -1,84 +1,57 @@
 // src/pages/SignUpPage.js
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import { useNavigate, Link } from 'react-router-dom';
+import './AuthPage.css'; // ✅ Shared CSS
 
 function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('customer');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    setError('');
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, 'users', user.uid), { email: user.email, role });
       navigate('/products');
     } catch (err) {
-      setError(err.message);
+      console.error(err);
+      setError('Sign up failed. ' + err.message);
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Create Account</h2>
-      <form onSubmit={handleSignUp} style={styles.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password (6+ characters)"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={styles.input}
-        />
-        {error && <p style={styles.error}>{error}</p>}
-        <button type="submit" style={styles.button}>Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2>Create Account</h2>
+        <form onSubmit={handleSignUp} className="auth-form">
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" placeholder="Password (6+ characters)" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+          </select>
+          {error && <p className="error">{error}</p>}
+          <button type="submit">Sign Up</button>
+        </form>
+        <p className="redirect-text">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    maxWidth: '400px',
-    margin: '3rem auto',
-    textAlign: 'center',
-    fontFamily: 'Arial, sans-serif'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    marginTop: '1rem'
-  },
-  input: {
-    padding: '10px',
-    fontSize: '16px'
-  },
-  button: {
-    padding: '10px',
-    backgroundColor: '#007185',
-    color: '#fff',
-    fontSize: '16px',
-    border: 'none',
-    cursor: 'pointer'
-  },
-  error: {
-    color: 'red',
-    fontSize: '14px'
-  }
-};
 
 export default SignUpPage;

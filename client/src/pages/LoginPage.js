@@ -1,8 +1,10 @@
 // src/pages/LoginPage.js
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
+import './AuthPage.css'; // ✅ Shared CSS
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -12,73 +14,61 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
+
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/products');
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCred.user;
+
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const userRole = userDoc.data().role;
+        if (userRole === 'admin') {
+          navigate('/admin');
+        } else if (userRole === 'customer') {
+          navigate('/products');
+        } else {
+          setError('Unknown role assigned. Contact support.');
+        }
+      } else {
+        setError('User role not found.');
+      }
     } catch (err) {
+      console.error(err);
       setError('Invalid email or password');
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin} style={styles.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={styles.input}
-        />
-        {error && <p style={styles.error}>{error}</p>}
-        <button type="submit" style={styles.button}>Login</button>
-      </form>
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} className="auth-form">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <p className="error">{error}</p>}
+          <button type="submit">Login</button>
+        </form>
+        <p className="redirect-text">
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    maxWidth: '400px',
-    margin: '3rem auto',
-    textAlign: 'center',
-    fontFamily: 'Arial, sans-serif'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    marginTop: '1rem'
-  },
-  input: {
-    padding: '10px',
-    fontSize: '16px'
-  },
-  button: {
-    padding: '10px',
-    backgroundColor: '#007185',
-    color: '#fff',
-    fontSize: '16px',
-    border: 'none',
-    cursor: 'pointer'
-  },
-  error: {
-    color: 'red',
-    fontSize: '14px'
-  }
-};
 
 export default LoginPage;

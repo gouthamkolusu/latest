@@ -1,19 +1,19 @@
 // src/components/Header.js
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaBell, FaUserCircle } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
+import { doc, getDoc } from 'firebase/firestore';
 import './Header.css';
-
-
 
 function Header() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [role, setRole] = useState(null);
 
   const handleUserClick = () => {
     if (!user) {
@@ -29,6 +29,21 @@ function Header() {
     navigate('/');
   };
 
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (user) {
+        const ref = doc(db, 'users', user.uid);
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          setRole(snap.data().role);
+        }
+      } else {
+        setRole(null);
+      }
+    };
+    fetchUserRole();
+  }, [user]);
+
   return (
     <motion.header
       className="custom-strip"
@@ -36,32 +51,26 @@ function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
     >
-      <motion.div
-        className="strip-content"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <motion.div
-          className="strip-title"
-          initial={{ x: -30, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
+      <motion.div className="strip-content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+        <motion.div className="strip-title" initial={{ x: -30, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.5 }}>
           Welcome to Home Hardware
         </motion.div>
 
-        <motion.div
-          className="strip-right"
-          initial={{ x: 30, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
+        <motion.div className="strip-right" initial={{ x: 30, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.6 }}>
           <nav className="strip-nav">
             <Link to="/" className="strip-link">Home</Link>
-            <a href="/products" className="strip-link" target="_blank" rel="noopener noreferrer">Products</a>
-            <a href="/cart" className="strip-link" target="_blank" rel="noopener noreferrer">Cart</a>
-            <a href="/admin" className="strip-link" target="_blank" rel="noopener noreferrer">Admin</a>
+            <Link to="/products" className="strip-link">Products</Link>
+            <Link to="/cart" className="strip-link">Cart</Link>
+
+            {/* ✅ Only show Add Product for Admin (Admin link removed) */}
+            {role === 'admin' && (
+              <button
+                className="add-product-btn"
+                onClick={() => navigate('/admin')}
+              >
+                + Add Product
+              </button>
+            )}
           </nav>
 
           <div className="strip-icons">

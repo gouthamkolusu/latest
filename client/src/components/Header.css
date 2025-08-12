@@ -1,106 +1,118 @@
-/* ---- Main Strip Styling ---- */
 .custom-strip {
-  background-color: #2563eb; /* Professional Blue */
+  background: linear-gradient(90deg, #2563eb, #1e3a8a);
+  padding: 0.8rem 1.5rem;
   color: white;
-  padding: 12px 20px;
-  font-family: 'Segoe UI', 'Inter', 'Arial', sans-serif;
   display: flex;
-  justify-content: center;
-  border-bottom: 2px solid #3b82f6;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .strip-content {
-  width: 100%;
-  max-width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .strip-title {
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: white;
+  color: #e0f2fe;
 }
 
 .strip-right {
   display: flex;
   align-items: center;
-  gap: 24px;
 }
 
-/* ---- Navigation Links ---- */
 .strip-nav {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  margin-right: 1.5rem;
 }
 
 .strip-link {
-  text-decoration: none;
   color: white;
-  font-size: 15px;
-  font-weight: 500;
+  margin-left: 1.2rem;
+  text-decoration: none;
+  font-size: 0.95rem;
   transition: color 0.2s ease;
 }
 
 .strip-link:hover {
-  color: #dbeafe; /* Soft hover blue */
+  color: #a5f3fc;
 }
 
-/* ---- Icons ---- */
 .strip-icons {
   display: flex;
-  gap: 14px;
+  align-items: center;
+  gap: 1rem;
 }
 
 .icon {
-  color: white;
-  font-size: 18px;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
+  color: #f0f9ff;
+  transition: color 0.2s ease;
 }
 
 .icon:hover {
-  transform: scale(1.1);
-  color: #e0f2fe;
+  color: #bae6fd;
 }
 
-/* ---- User Dropdown ---- */
 .user-dropdown {
   position: absolute;
-  top: 36px;
+  top: 28px;
   right: 0;
   background-color: white;
-  color: #333;
-  border: 1px solid #ddd;
+  color: black;
+  padding: 0.5rem;
   border-radius: 6px;
-  padding: 10px 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 200px;
-  z-index: 1000;
-  text-align: right;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  z-index: 10;
 }
 
-.user-dropdown .user-email {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #1e293b;
+.user-email {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #1f2937;
 }
 
 .logout-btn {
-  padding: 6px 10px;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: #ef4444; /* Red */
+  margin-top: 0.4rem;
+  background-color: #ef4444;
   color: white;
   border: none;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
-  text-align: center;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
 }
 
 .logout-btn:hover {
   background-color: #dc2626;
+}
+
+.add-product-btn {
+  background-color: #22c55e;
+  color: white;
+  padding: 6px 12px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.add-product-btn:hover {
+  background-color: #16a34a;
 }

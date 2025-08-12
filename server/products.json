@@ -1,101 +1,48 @@
 [
   {
-    "name": "Stanly 33-725",
-    "price": "13",
-    "image": "https://m.media-amazon.com/images/I/61OZWbwKwuL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751518614242
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "14",
-    "image": "https://m.media-amazon.com/images/I/61OZWbwKwuL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751518635929
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "13",
-    "image": "https://m.media-amazon.com/images/I/61OZWbwKwuL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751518763544
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "13",
-    "image": "https://m.media-amazon.com/images/I/61OZWbwKwuL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751518777747
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "13",
-    "image": "https://m.media-amazon.com/images/I/61OZWbwKwuL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751518942391
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "13",
-    "image": "https://m.media-amazon.com/images/I/61OZWbwKwuL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751519427707
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "244",
-    "image": "C:\\Users\\Goutham\\Pictures\\Camera Roll",
-    "category": "Tape",
-    "id": 1751519439521
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "1302424",
-    "image": "https://m.media-amazon.com/images/I/71QFUw7KJUL._SL1500_.jpg",
-    "category": "Tape",
-    "id": 1751519502689
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "13",
-    "image": "fffdfd",
-    "category": "Tape",
-    "id": 1751519786662
-  },
-  {
-    "name": "Stanly 33-725",
-    "price": "143",
-    "image": "dsfdas",
-    "category": "Tape",
-    "id": 1751519798958
-  },
-  {
-    "name": "DEWALT Atomic Compact Series 30 ft. Tape Measure (DWHT38130S)",
-    "price": "19.99",
-    "image": "https://m.media-amazon.com/images/I/51mq+8EYGYL._SX466_.jpg",
-    "category": "Tape",
-    "id": 1751769098863
-  },
-  {
-    "name": "15-483 Professional Hard Hat Sun Shade Visor - Reusable and Replaceable Visor with Sun & Heat Protection, Standard Full Brim Hard Hat Attachment",
-    "price": "18.95",
-    "image": "https://m.media-amazon.com/images/I/51Gz2UW6I7L._AC_SX569_.jpg",
-    "category": "Hard Hat Accessories",
-    "id": 1751778328656
-  },
-  {
-    "name": "15-483 Professional Hard Hat Sun Shade Visor - Reusable and Replaceable Visor with Sun & Heat Protection, Standard Full Brim Hard Hat Attachment",
-    "price": "18.95",
-    "category": "Hard Hat Accessories",
+    "name": "Metabo HPT Roofing Nailer, Pro-preferred Pneumatic Power Nailers, Ideal for Asphalt Roofing Shingles, 16 Degree 7/8″ to 1-3/4″ Roofing Nails, NV45AB2",
+    "brand": "Metabo ",
+    "price": 236,
+    "description": "sdsadasda",
     "images": [
+      "https://m.media-amazon.com/images/I/51Y17P8YbZS._AC_SL1300_.jpg"
+    ],
+    "upc": "fadsfasd",
+    "location": "sdfsadf",
+    "specs": {
+      "Speed": "245245",
+      "Torque": "245",
+      "Battery Type": "45245",
+      "Battery Capacity": "254",
+      "Charge Time": "445",
+      "UPC": "adsfdsf",
+      "Location": "dsaf"
+    },
+    "category": "Tools & Home Improvement › Power Tools › Drills & Drivers › Corded Drills › Standard Drills",
+    "image": "https://m.media-amazon.com/images/I/51Y17P8YbZS._AC_SL1300_.jpg",
+    "id": 1754614186112
+  },
+  {
+    "name": "15-483 Professional Hard Hat Sun Shade Visor - Reusable and Replaceable Visor with Sun & Heat Protection, Standard Full Brim Hard Hat Attachment",
+    "brand": "Zeluga ",
+    "price": 19.95,
+    "description": "Durable Construction: Crafted with High Density Polyethylene and Polycarbonate for long-lasting protection and impact resistance\nSun & Heat Protection: Reusable and replaceable visor shields your face from harmful UV rays and keeps you cool\nUniversal Fit: Standard full brim hard hat attachment ensures a secure and comfortable fit for various head sizes\nEasy Closure: Snap closure type provides a quick and hassle-free way to secure the helmet\nModern Industrial Design: Sleek and contemporary style with a black finish, suitable for professional use",
+    "images": [
+      "https://m.media-amazon.com/images/I/51Gz2UW6I7L._AC_SL1280_.jpg",
       "https://m.media-amazon.com/images/I/61KvFRiF89L._AC_SL1500_.jpg",
       "https://m.media-amazon.com/images/I/61bkipVJn9L._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/61uuHEvy7dL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/7182QkpUpPL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/71mbPnAn9AL._AC_SL1500_.jpg",
-      "https://m.media-amazon.com/images/I/71af1LrSWTL._AC_SL1500_.jpg"
+      "https://m.media-amazon.com/images/I/61uuHEvy7dL._AC_SL1500_.jpg"
     ],
-    "image": "https://m.media-amazon.com/images/I/61KvFRiF89L._AC_SL1500_.jpg",
-    "id": 1751863180493
+    "upc": "wfdfadsf",
+    "location": "H21",
+    "specs": {
+      "Brand": "Zeluga ",
+      "Weight": "0.500",
+      "Material": "Plastic ",
+      "Location": "H21"
+    },
+    "category": "Tools & Home Improvement › Safety Gear › Head & Eye › Helmets › Construction Helmets",
+    "image": "https://m.media-amazon.com/images/I/51Gz2UW6I7L._AC_SL1280_.jpg",
+    "id": 1754701758870
   }
 ]

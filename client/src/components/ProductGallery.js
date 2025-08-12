@@ -1,3 +1,4 @@
+// src/components/ProductGallery.js
 import React, { useState, useEffect } from 'react';
 import './ProductGallery.css';
 import Lightbox from 'yet-another-react-lightbox';
