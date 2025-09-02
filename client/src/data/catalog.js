@@ -174,6 +174,11 @@ const catalog = {
         "Lanyards": {
           "Shock Lanyards": null,
           "Retractable Lanyards": null
+        },
+        "Ascenders": {
+          "Handled Ascenders": null,
+          "Chest Ascenders": null,
+          "Foot Ascenders": null
         }
       },
       "Respiratory Protection": {

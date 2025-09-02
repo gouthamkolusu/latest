@@ -1,0 +1,135 @@
+/* ===== Modern Glassmorphic Header ===== */
+.modern-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Container for header content */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ff8c00;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ff8c00;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff8c00;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Header Icons Section */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  color: #ff8c00;
+}
+
+/* Profile Section */
+.profile-section {
+  position: relative;
+}
+
+.profile-icon {
+  font-size: 1.4rem;
+}
+
+/* User Dropdown */
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 2.2rem;
+  background: rgba(30, 30, 30, 0.95);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  min-width: 160px;
+  text-align: left;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  animation: dropdownFade 0.2s ease-out;
+}
+
+.user-dropdown p {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.user-dropdown button {
+  background: #ff8c00;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.user-dropdown button:hover {
+  background: #e07b00;
+}
+
+/* Dropdown Animation */
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

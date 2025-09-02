@@ -93,7 +93,7 @@ const fieldConfigData = {
     ]
   },
   fieldConfig: {
-    // ✅ Auto-mapped from full catalog
+    // Power Tools
     "Standard Drills": "template2",
     "Hammer Drills": "template2",
     "Brushless Drills": "template2",
@@ -112,6 +112,8 @@ const fieldConfigData = {
     "Glue Guns": "template2",
     "Wood Routers": "template2",
     "Electric Planers": "template2",
+
+    // Electric Tools
     "Cleaning": "template2",
     "Compressors": "template2",
     "Cutting": "template2",
@@ -131,12 +133,16 @@ const fieldConfigData = {
     "Screwdrivers": "template2",
     "Sharpeners": "template2",
     "Welding": "template2",
+
+    // Pneumatic Tools
     "Airbrushes": "template2",
     "Clamps & Pliers": "template3",
     "Pneumatic": "template2",
     "Pneumatic Paint Sprayers": "template2",
     "Pneumatic Power Grinders": "template2",
     "Pneumatic Sander Machines": "template2",
+
+    // Boxes & Organizers
     "Magnetic Trays": "template3",
     "Miter Boxes": "template3",
     "Tool Bags": "template3",
@@ -148,6 +154,8 @@ const fieldConfigData = {
     "Tool Organizers": "template3",
     "Toolboxes": "template3",
     "Workbenches": "template3",
+
+    // Industrial
     "Combustion Drills": "template2",
     "Dust Collectors": "template2",
     "Edge Banding Machines": "template2",
@@ -164,6 +172,8 @@ const fieldConfigData = {
     "Wheel Balancer Machines": "template2",
     "Winding Machines": "template2",
     "Wire Stripping Machines": "template2",
+
+    // Tool Accessories
     "Battery Chargers": "template3",
     "Brushing Machine Blades": "template3",
     "Carbon Brushes": "template3",
@@ -182,6 +192,8 @@ const fieldConfigData = {
     "Tips & Adapters": "template3",
     "Welded": "template3",
     "Wire Rope Thimbles": "template3",
+
+    // Testers & Measuring Equipment
     "Cattle Counter": "template6",
     "Digital Thermostats": "template6",
     "Distance Meters": "template6",
@@ -199,6 +211,13 @@ const fieldConfigData = {
     "Refractometers": "template6",
     "Strength Meters": "template6",
     "Thickness Meters": "template6",
+
+    // Safety Gear → Hands & Fall → Ascenders
+    "Handled Ascenders": "template3",
+    "Chest Ascenders": "template3",
+    "Foot Ascenders": "template3",
+
+    // Fallback
     default: "template9"
   }
 };

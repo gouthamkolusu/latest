@@ -1,5 +1,5 @@
 .custom-strip {
-  background: linear-gradient(90deg, #2563eb, #1e3a8a);
+  background: #2563eb; /* ✅ Solid blue */
   padding: 0.8rem 1.5rem;
   color: white;
   display: flex;
@@ -10,6 +10,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: background 0.3s ease-in-out;
 }
 
 .strip-content {
@@ -19,12 +20,29 @@
   width: 100%;
 }
 
+/* Left section */
+.strip-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.header-logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+.header-logo-img:hover {
+  transform: scale(1.05);
+}
 .strip-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #e0f2fe;
 }
 
+/* Right section */
 .strip-right {
   display: flex;
   align-items: center;
@@ -41,11 +59,13 @@
   margin-left: 1.2rem;
   text-decoration: none;
   font-size: 0.95rem;
-  transition: color 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: color 0.2s ease, background 0.2s ease;
 }
-
 .strip-link:hover {
-  color: #a5f3fc;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .strip-icons {
@@ -58,11 +78,11 @@
   font-size: 1.2rem;
   cursor: pointer;
   color: #f0f9ff;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
-
 .icon:hover {
-  color: #bae6fd;
+  color: #dbeafe;
+  transform: scale(1.05);
 }
 
 .user-dropdown {
@@ -76,6 +96,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   min-width: 160px;
   z-index: 10;
+  animation: dropdownFade 0.2s ease-out;
 }
 
 .user-email {
@@ -95,7 +116,6 @@
   font-size: 0.85rem;
   transition: background 0.2s ease;
 }
-
 .logout-btn:hover {
   background-color: #dc2626;
 }
@@ -112,7 +132,11 @@
   font-size: 14px;
   transition: background 0.2s ease;
 }
-
 .add-product-btn:hover {
   background-color: #16a34a;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }

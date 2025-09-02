@@ -15,6 +15,9 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import RequireRole from './components/RequireRole';
 
+// Orders page (admin)
+import OrdersPage from './pages/admin/OrdersPage';
+
 function App() {
   const [products, setProducts] = useState([]);
 
@@ -59,6 +62,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+
+        {/* Admin routes */}
         <Route
           path="/admin"
           element={
@@ -72,6 +77,16 @@ function App() {
           element={
             <RequireRole role="admin">
               <EditProductPage />
+            </RequireRole>
+          }
+        />
+
+        {/* Orders (admin only) */}
+        <Route
+          path="/orders"
+          element={
+            <RequireRole role="admin">
+              <OrdersPage />
             </RequireRole>
           }
         />
