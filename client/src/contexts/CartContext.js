@@ -23,19 +23,15 @@ export const CartProvider = ({ children }) => {
   const lastSavedHashRef = useRef("");
   const cartHash = useMemo(() => JSON.stringify(cart), [cart]);
 
-  // Persist to localStorage on every change
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch {}
   }, [cart]);
 
-  // Load cart on auth changes (guest = localStorage; signed-in = Firestore)
   useEffect(() => {
     if (!authReady) return;
-
     (async () => {
       setCartLoaded(false);
       if (!user?.uid) {
-        // guest
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
           const items = raw ? JSON.parse(raw) : [];
@@ -50,8 +46,6 @@ export const CartProvider = ({ children }) => {
         }
         return;
       }
-
-      // signed-in
       try {
         const ref = doc(db, "carts", user.uid);
         const snap = await getDoc(ref);
@@ -69,11 +63,9 @@ export const CartProvider = ({ children }) => {
     })();
   }, [user?.uid, authReady]);
 
-  // Debounced save to Firestore (only when signed in)
   useEffect(() => {
     if (!authReady || !user?.uid || !cartLoaded) return;
     if (cartHash === lastSavedHashRef.current) return;
-
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(async () => {
       try {
@@ -84,7 +76,6 @@ export const CartProvider = ({ children }) => {
         console.error("Failed to save cart:", err);
       }
     }, 400);
-
     return () => saveTimerRef.current && clearTimeout(saveTimerRef.current);
   }, [cartHash, cart, user?.uid, authReady, cartLoaded]);
 
@@ -102,12 +93,12 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (id) => setCart((prev) => prev.filter((p) => String(p.id) !== String(id)));
+
   const updateQuantity = (id, quantity) => {
     if (quantity < 1) return;
     setCart((prev) => prev.map((p) => (String(p.id) === String(id) ? { ...p, quantity } : p)));
   };
 
-  // NEW: persist immediately; prevents Firestore loader from restoring old items
   const clearCartNow = async () => {
     setCart([]);
     lastSavedHashRef.current = "[]";
@@ -123,9 +114,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const value = { cart, addToCart, removeFromCart, updateQuantity, clear:clearCartNow, };
-    [cart,addToCart, removeFromCart, updateQuantity, clearCartNow]
-  );
+  const value = { cart, addToCart, removeFromCart, updateQuantity, clear: clearCartNow };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
