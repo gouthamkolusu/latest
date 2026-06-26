@@ -1,13 +1,8 @@
 // client/src/lib/apiClient.js
 import { getAuth } from "firebase/auth";
+import { API_BASE } from "./apiBase.js";
 
-const rawBase =
-  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE_URL) ||
-  process.env.REACT_APP_API_BASE_URL ||
-  process.env.REACT_APP_API_URL ||
-  "http://localhost:4000";
-
-export const API_BASE = rawBase.replace(/\/+$/, "");
+export { API_BASE };
 
 async function authHeaders() {
   try {
