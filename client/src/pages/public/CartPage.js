@@ -16,7 +16,7 @@ function CartPage() {
     if (cart.length === 0 || checkingOut) return;
     setCheckingOut(true);
     try {
-      const base = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+      const base = process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_API_BASE_URL || process.env.REACT_APP_API_URL || 'http://localhost:4000';
       const res = await fetch(`${base}/api/payments/create-checkout-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
