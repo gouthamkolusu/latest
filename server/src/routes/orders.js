@@ -172,5 +172,22 @@ router.post("/", (req, res) => {
     return res.status(500).json({ error: "Failed to save order" });
   }
 });
-
+// PATCH /api/orders/:id
+router.patch("/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status, trackingNumber } = req.body || {};
+    const all = readAll();
+    const order = all.find(o => String(o.id) === String(id));
+    if (!order) return res.status(404).json({ error: "Order not found" });
+    const updated = upsert({
+      ...order,
+      ...(status && { status, paymentStatus: status }),
+      ...(trackingNumber !== undefined && { trackingNumber }),
+    });
+    return res.json(updated);
+  } catch (err) {
+    return res.status(500).json({ error: "Failed to update order" });
+  }
+});
 module.exports = router;
