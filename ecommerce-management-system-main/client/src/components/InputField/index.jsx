@@ -24,12 +24,10 @@ const AddProductForm = ({ onProductAdded }) => {
   const navigate = useNavigate();
   useEffect(() => { window.scrollTo(0, 0); }, [step]);
 
-  /** Pick Category */
   const pickCategory = (label) => {
     const next = node[label];
     const newPath = [...path, label];
     setPath(newPath);
-
     if (!next || typeof next !== 'object' || Object.keys(next).length === 0) {
       const templateKey = fieldConfig[label] || fieldConfig.default;
       const meta = fieldTemplates[templateKey] || [];
@@ -45,7 +43,6 @@ const AddProductForm = ({ onProductAdded }) => {
     }
   };
 
-  /** Breadcrumb Navigation */
   const goBackBreadcrumb = (i) => {
     const newPath = path.slice(0, i + 1);
     let temp = catalog;
@@ -55,7 +52,6 @@ const AddProductForm = ({ onProductAdded }) => {
     setOptions(Object.keys(temp));
   };
 
-  /** Reset Form */
   const resetForm = () => {
     setStep(1);
     setForm({ name: '', brand: '', price: '', description: '', images: [], upc: '', location: '' });
@@ -66,16 +62,15 @@ const AddProductForm = ({ onProductAdded }) => {
     setOptions(Object.keys(catalog));
   };
 
-  /** Input Handlers */
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleExtraChange = (e) => setExtras({ ...extras, [e.target.name]: e.target.value });
 
-  /** Upload Images (Drag & Drop) */
   const uploadFiles = async (files) => {
     const formData = new FormData();
     files.forEach((file) => formData.append('images', file));
     try {
-      const res = await fetch('http://localhost:5000/api/upload', { method: 'POST', body: formData });
+      const API = process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
+      const res = await fetch(`${API}/api/upload`, { method: 'POST', body: formData });
       if (!res.ok) throw new Error('Upload failed');
       const data = await res.json();
       setForm((prev) => ({ ...prev, images: [...prev.images, ...data.urls] }));
@@ -85,7 +80,6 @@ const AddProductForm = ({ onProductAdded }) => {
     }
   };
 
-  /** Drag Events */
   const handleDragOver = (e) => { e.preventDefault(); setDragActive(true); };
   const handleDragLeave = (e) => { e.preventDefault(); setDragActive(false); };
   const handleDrop = (e) => {
@@ -95,15 +89,12 @@ const AddProductForm = ({ onProductAdded }) => {
     if (files.length > 0) uploadFiles(files);
   };
 
-  /** Add Image via URL (External like Amazon) */
   const handleAddImageUrl = async () => {
     const url = imageUrlInput.trim();
     if (!url || !url.startsWith('http')) {
       alert('❌ Enter a valid image URL');
       return;
     }
-
-    // Optional validation (skip blocking errors if HEAD fails)
     try {
       const res = await fetch(url, { method: 'HEAD' });
       const contentType = res.headers.get('content-type');
@@ -113,12 +104,10 @@ const AddProductForm = ({ onProductAdded }) => {
     } catch {
       console.warn('Image HEAD check failed, adding anyway.');
     }
-
     setForm((prev) => ({ ...prev, images: [...prev.images, url] }));
     setImageUrlInput('');
   };
 
-  /** Remove Image */
   const handleRemoveImage = (index) => {
     setForm((prev) => ({
       ...prev,
@@ -126,7 +115,6 @@ const AddProductForm = ({ onProductAdded }) => {
     }));
   };
 
-  /** Submit Product */
   const handleSubmit = async (e) => {
     e.preventDefault();
     const product = {
@@ -137,14 +125,13 @@ const AddProductForm = ({ onProductAdded }) => {
       image: form.images[0] || '',
       images: form.images,
     };
-
     try {
-      const res = await fetch('http://localhost:5000/api/products', {
+      const API = process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
+      const res = await fetch(`${API}/api/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product),
       });
-
       if (res.ok) {
         const savedProduct = await res.json();
         alert('✅ Product added successfully!');
@@ -170,7 +157,6 @@ const AddProductForm = ({ onProductAdded }) => {
       </div>
 
       <form className="add-product-form" onSubmit={handleSubmit}>
-        {/* Step 1: Category */}
         {step === 1 && (
           <div className="category-step">
             <label className="category-label">Choose Category</label>
@@ -195,7 +181,6 @@ const AddProductForm = ({ onProductAdded }) => {
           </div>
         )}
 
-        {/* Step 2: Product Form */}
         {step === 2 && (
           <>
             <div className="form-row">
@@ -239,7 +224,6 @@ const AddProductForm = ({ onProductAdded }) => {
               </div>
             </div>
 
-            {/* Drag & Drop Image Uploader + URL */}
             <div
               className={`image-uploader ${dragActive ? 'drag-active' : ''}`}
               onDragOver={handleDragOver}
@@ -247,8 +231,6 @@ const AddProductForm = ({ onProductAdded }) => {
               onDrop={handleDrop}
             >
               <p>{dragActive ? 'Drop images here...' : '📷 Drag & drop images here OR add image URL below'}</p>
-
-              {/* External URL Input */}
               <div style={{ marginTop: '10px', display: 'flex', gap: '8px' }}>
                 <input
                   type="text"
@@ -259,8 +241,6 @@ const AddProductForm = ({ onProductAdded }) => {
                 />
                 <button type="button" onClick={handleAddImageUrl}>Add URL</button>
               </div>
-
-              {/* Image Previews */}
               <div className="image-preview-grid">
                 {form.images.map((img, i) => (
                   <div key={i} style={{ position: 'relative' }}>
