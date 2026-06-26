@@ -1,0 +1,4 @@
+/* Global surface */
+html, body, #root {
+  background: #f3f4f6;   /* same gray you’re using */
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Hammer",
+    "price": 500,
+    "description": "Heavy-duty hammer for construction work.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 2,
+    "name": "Screwdriver Set",
+    "price": 300,
+    "description": "5-piece precision screwdriver set.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 3,
+    "name": "Electric Drill",
+    "price": 2200,
+    "description": "Cordless electric drill with variable speed.",
+    "image_url": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 4,
+    "name": "Wrench",
+    "price": 250,
+    "description": "Adjustable wrench for plumbing and general tasks.",
+    "image_url": "https://via.placeholder.com/150"
+  }
+]
