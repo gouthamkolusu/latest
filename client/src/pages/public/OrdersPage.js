@@ -232,7 +232,7 @@ export default function OrdersPage() {
                         </div>
                         <div className="info-col">
                           <div className="info-label">SKU</div>
-                          <div className="info-strong">{it.sku || "—"}</div>
+                          <div className="info-strong">{/^prod_/.test(it.sku || "") ? "—" : (it.sku || "—")}</div>
                         </div>
                         <div className="info-col total">
                           <div className="info-label">Subtotal</div>
